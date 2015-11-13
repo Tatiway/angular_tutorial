@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>ng-switch</title>
+</head>
+<body>
+
+	<input type="text" ng-model="color">
+
+	<div ng-switch on = "color">
+
+		<div ng-switch-when="red" style="color:{{color}}"><h1>RED</h1></div>
+		<div ng-switch-when="green" style="color:{{color}}"><h1>GREEN</h1></div>
+		<div ng-switch-when="grey" style="color:{{color}}"><h1>GREY</h1></div>
+		<div ng-switch-default style="color:{{color}}"><h1>COLOR</h1></div>
+		
+	</div>
+
+
+
+
+
+	<script src="../bower_components/angular/angular.js"></script>
+	
+</body>
+</html>

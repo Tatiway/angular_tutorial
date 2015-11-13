@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="APP">
+<head>
+	<meta charset="UTF-8">
+	<title>Service vs Factory</title>
+</head>
+<body>
+
+<div ng-controller="theController">
+	{{providerValue}}<br/>
+	{{factoryValue}}<br/>
+	{{servoceValue}}<br/>
+</div>
+
+
+
+
+
+
+	<script src="../bower_components/angular/angular.js"></script>
+	<script>
+
+	function Service(){};
+	Service.prototype.log = function(){return "Service"};
+
+	// var s = new Service();
+
+
+
+	// console.log(s.log());
+
+	angular.module("APP",[]).
+	provider('theProvader', {$get: function(){return "Provider"}}).
+	factory('theFactory',function(){return "Factory"}).
+	service('theService', Service ).
+	controller('theController', ['$scope', 'theFactory', 'theService', function($scope,  theFactory, theService){
+		$scope.providerValue = theProvader;
+		$scope.factoryValue = theFactory;
+		$scope.servoceValue = theService.log();
+	}])
+
+	</script>
+</body>
+</html>

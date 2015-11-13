@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="APP">
+<head>
+	<meta charset="UTF-8">
+	<title>Client Event</title>
+</head>
+<body>
+
+	<div ng-controller="theController">
+
+		<textarea 
+
+		ng-focus= "state='FOCUS'"
+		ng-blur="state='BLUR'"
+		ng-keypress="state='KEY PRESS'"
+		ng-copy="state= 'COPIED'"
+		ng-cut="state= 'CUT'"
+		ng-paste="state= 'PASTE'"
+		cols="30" rows="10"
+
+		></textarea>
+
+		<button 
+
+		ng-mouseover="bState='OVER'"
+		ng-mouseleave="bState='OUT'"
+		ng-click="bState='CLICK'"> 
+		Button state: {{bState}}
+
+		</button>
+		<h1>{{state}}</h1>
+
+
+	</div>
+
+
+
+
+
+
+<script src="../bower_components/angular/angular.js"></script>
+
+<script>
+
+	angular.module("APP",[]).
+
+	controller("theController", ["$scope", function($scope){
+
+			$scope.sayHi = function(){
+
+
+			}
+
+	}]);
+
+</script>
+	
+</body>
+</html>
