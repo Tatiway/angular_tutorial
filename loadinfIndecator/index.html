@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="APP">
+<head>
+	<meta charset="UTF-8">
+	<title>Filter</title>
+	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body ng-controller="appController">
+<div class="alert alert-info" ng-show="loading">Loading</div>
+
+
+	<div ng-controller="myController">
+
+	<ul>
+		<li ng-repeat="persone in people">
+			{{persone.fname}}
+		</li>
+	</ul>
+		
+	</div>
+
+
+
+<script src="../bower_components/angular/angular.js"></script>
+<script>
+
+angular.module("APP",[]).
+controller("myController", ['$scope', '$http', function($scope, $http){
+	$scope.$emit('LOAD')
+	$http.jsonp('http://www.filltext.com/?callback=JSON_CALLBACK&delay=5&rows=10&fname={firstName}&lname={lastName}').success(function(data){
+				$scope.people = data;
+				$scope.$emit('UNLOAD')
+			});
+
+}]).
+controller("appController",['$scope', function($scope){
+	$scope.$on('LOAD', function(){$scope.loading=true});
+	$scope.$on('UNLOAD', function(){$scope.loading=false});
+}])
+
+	
+
+</script>
+	
+</body>
+</html>

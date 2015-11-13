@@ -1,0 +1,18 @@
+
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>Last Name</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="name in people">
+			<td><a href="/#/view/{{$index}}">{{name.fname}} {{name.lname}}</a></td>
+			<td><a href="/#/view/{{$index}}">{{name.tel}}</a></td>
+		</tr>
+	</tbody>
+</table>
+	
+

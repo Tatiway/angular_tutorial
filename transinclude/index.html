@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="APP">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+
+<panel>
+		<my-directive>My First Directive</my-directive>
+		<panelcontent> this is the content</panelcontent>
+</panel>
+
+
+
+
+
+
+
+
+	<script src="../bower_components/angular/angular.js"></script>
+	<script>
+
+		angular.module("APP",[]).
+		directive('myDirective', function(){
+
+			return{
+				restrict:"E",
+				transclude:true,
+				template:"<div><h1 ng-transclude></h1></div>",
+			}
+
+		}).
+		directive("panel", function(){
+			return{
+				restrict:"E",
+				transclude:true,
+				template:"<div ng-transclude style='border:1px solid red;padding:10px'></div>"
+			}
+		}).
+		directive("panelcontent", function(){
+			return{
+				restrict:"E",
+				transclude:true,
+				template:"<div ng-transclude style='color:red'></div>"
+			}
+		})
+
+
+
+	
+
+</script>
+</body>
+</html>

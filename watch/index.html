@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="APP">
+<head>
+	<meta charset="UTF-8">
+	<title>Watch</title>
+	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+
+<div class="container" ng-controller="theController">
+
+<select ng-model="countSelection" ng-options="n for n in [5,10,15,20]"></select>
+
+
+	<h1>{{people[0].fname}}</h1>
+	<p>{{whenChanged}}</p>
+
+	<div ng-repeat="person in people">
+		<input type="text" ng-model="person.fname">
+	</div>
+	
+</div>
+
+
+	
+
+	<script src="../bower_components/angular/angular.js"></script>
+
+	<script>
+
+	angular.module("APP", []).
+	controller('theController', ['$scope', '$http', function($scope, $http){
+
+		$scope.getPeople = function(count){
+			$http.jsonp('http://www.filltext.com/?callback=JSON_CALLBACK&rows='+count+'&fname={firstName}').success(function(data){
+				$scope.people = data;
+
+			});
+		}
+
+		$scope.countSelection = 10;
+		//$scope.getPeople($scope.countSelection);
+		
+		$scope.$watch('countSelection', function( newValue, oldValue){
+			$scope.getPeople(newValue);
+		});
+
+		$scope.$watch('people', function(newValue, oldValue){
+
+			if(newValue != oldValue){
+						$scope.whenChanged = Date().toString();
+			}
+
+		},true);
+
+		
+
+
+
+	}]);
+
+	</script>
+</body>
+</html>
